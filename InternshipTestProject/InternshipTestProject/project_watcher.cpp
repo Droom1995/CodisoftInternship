@@ -137,7 +137,7 @@ void project_watcher::process_watch(project_watcher *prj)
 		DWORD status = get_process_status(0);
 		if(status==STILL_ACTIVE)
 		{
-	//		mtx.lock();
+			mtx.lock();
 			if(started)
 			{
 				prj->event_logger->write("Process started",time(0));
@@ -146,11 +146,11 @@ void project_watcher::process_watch(project_watcher *prj)
 				prj->crashed=false;
 				on_proc_start();
 			}
-		//	mtx.unlock();
+			mtx.unlock();
 		}else if(status==0)
 		{
 		
-			//mtx.lock();
+			mtx.lock();
 			if(!closed)
 			{
 				prj->event_logger->write("Process stopped",time(0));
@@ -159,11 +159,11 @@ void project_watcher::process_watch(project_watcher *prj)
 				prj->crashed=false;
 				on_proc_manually_stopped();
 			}
-			//mtx.unlock();
+			mtx.unlock();
 		}else
 		{
 		
-			//mtx.lock();
+			mtx.lock();
 			if(!crashed)
 			{
 				prj->event_logger->write("Process crashed",time(0));
@@ -172,7 +172,7 @@ void project_watcher::process_watch(project_watcher *prj)
 				prj->started = false;
 				on_proc_crash();
 			}
-			//mtx.unlock();
+			mtx.unlock();
 		}
 		chrono::milliseconds duration( 1000 );
 		this_thread::sleep_for( duration );

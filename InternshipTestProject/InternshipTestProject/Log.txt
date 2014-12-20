@@ -1,6 +1,0 @@
-Process created: Wed Dec 10 16:00:01 2014
-
-Process started: Wed Dec 10 16:00:01 2014
-
-Process stopped: Wed Dec 10 16:00:05 2014
-

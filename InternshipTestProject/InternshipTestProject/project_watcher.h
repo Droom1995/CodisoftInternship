@@ -3,9 +3,6 @@
 #include "ILogger.h"
 #include "FileLogger.h"
 
-
-//std::mutex mtx;
-
 class project_watcher
 {
 	PROCESS_INFORMATION processInformation;
@@ -14,7 +11,7 @@ class project_watcher
 	ILogger *event_logger;
 	char ** saved_args;
 	bool started,closed,crashed;
-	
+	mutex mtx;
 	vector<function<void()> *> proc_start_callback,proc_crash_callback,proc_end_callback;
 private:
 	bool create_process(string name,char ** args);
